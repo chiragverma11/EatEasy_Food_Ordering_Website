@@ -1,0 +1,20 @@
+<header class="primary-header container">
+  <a href="/"><img src="/img/EatEasy.svg" class="logo" alt="EatEasy Logo" /></a>
+  <nav class="primary-navigation">
+    <ul role="list" class="nav-list">
+      <li><a href="/">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Popular</a></li>
+      <li><a href="/menu">Menu</a></li>
+    </ul>
+  </nav>
+  <div class="icons">
+    <a href="/user/logout" class="logout">Logout</a>
+    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+    <a href="/user/login"><i class="fa-solid fa-user"></i></a>
+  </div>
+</header>
+<main class="container"><br><h2>Welcome, <% if(user) {%>
+  <%= user.name %>
+<% } %></h2>
+</main>

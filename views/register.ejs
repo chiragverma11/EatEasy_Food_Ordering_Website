@@ -1,15 +1,41 @@
-<div class="register">
+<div class="container">
+  <div class="register">
+    <div class="logo__cover">
+      <a href="/"><img src="/img/EatEasy.svg" alt="EatEasy" /></a>
+    </div>
     <div class="form-wrapper">
       <h1 class="title">Register</h1>
-      <form action="/register" method="post" class="form">
+      <div class="errors"><%- include('./partials/messages') %></div>
+      <form action="/user/register" method="post" class="form">
         <label for="name">Name</label>
-        <input type="text" id="name" placeholder="Enter Name"/>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Name"
+          value="<%= typeof name != 'undefined' ? name : '' %>"
+        />
         <label for="email">Email</label>
-        <input type="email" id="username" placeholder="Enter Email"/>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          value="<%= typeof email != 'undefined' ? email : '' %>"
+        />
         <label for="password">Password</label>
-        <input type="password" id="username" placeholder="Enter Password"/>
-        <button type="submit" class="submit">Submit</button>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          value="<%= typeof password != 'undefined' ? password : '' %>"
+        />
+        <button type="submit" class="submit">Register</button>
       </form>
-      <p class="asklogin">Have an account? <a href="/users/login">Login</a></p>
+      <p class="asklogin">
+        Already have an account? <a href="/user/login">Login</a>
+      </p>
     </div>
   </div>
+</div>

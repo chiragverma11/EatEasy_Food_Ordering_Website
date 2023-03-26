@@ -2,10 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const expressLayouts = require("express-ejs-layouts");
+const cookieParser = require("cookie-parser");
 // const flash = require('connect-flash')
 require("dotenv").config();
 
 const app = express();
+app.use(cookieParser());
 
 //Mongoose Connection
 mongoose
@@ -33,7 +35,7 @@ app.set("view engine", "ejs");
 
 //Routes
 app.use("/", require("./routes/index"));
-app.use("/users", require("./routes/users"));
+app.use("/user", require("./routes/users"));
 
 //Listen
 app.listen(
