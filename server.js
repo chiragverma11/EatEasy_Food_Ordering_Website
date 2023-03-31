@@ -36,6 +36,8 @@ app.set("view engine", "ejs");
 //Routes
 app.use("/", require("./routes/index"));
 app.use("/user", require("./routes/users"));
+app.use("/menu", require("./routes/menu"));
+app.use("/cart", require("./routes/cart"));
 
 //Listen
 app.listen(

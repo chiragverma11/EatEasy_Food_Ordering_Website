@@ -1,23 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const { isAuthenticated, checkUser } = require("../middlewares/AuthMiddleware");
 
+//Middleware Import
+const { checkUser } = require("../middlewares/AuthMiddleware");
+const { getIndex } = require("../controllers/indexController");
+
+//Checking user on every route
 router.get("*", checkUser);
 
-router.get("/", (req, res) => {
-  let myCss = [];
-  myCss.push({
-    uri: "/css/index.css",
-  });
-  res.render("index", { title: "EatEasy", styles: myCss });
-});
+//Home Get Route
+router.get("/", getIndex);
 
-router.get("/menu", isAuthenticated, (req, res) => {
-  let myCss = [];
-  myCss.push({
-    uri: "/css/menu.css",
-  });
-  res.render("menu", { title: "EatEasy", styles: myCss });
-});
-
+//Router Export
 module.exports = router;
