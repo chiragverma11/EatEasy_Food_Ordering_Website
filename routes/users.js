@@ -8,10 +8,15 @@ const {
   getRegister,
   postRegister,
   getLogout,
+  patchUpdate,
 } = require("../controllers/userController");
 
 //Authentication Middleware
-const { isLogged } = require("../middlewares/AuthMiddleware");
+const {
+  isAuthenticated,
+  checkUser,
+  isLogged,
+} = require("../middlewares/AuthMiddleware");
 
 // Login Get Route
 router.get("/login", isLogged, getLogin);
@@ -27,6 +32,9 @@ router.post("/register", postRegister);
 
 // Logout Route
 router.get("/logout", getLogout);
+
+//User Details Update Route
+router.patch("/u/:field", isAuthenticated, patchUpdate);
 
 //Router Export
 module.exports = router;

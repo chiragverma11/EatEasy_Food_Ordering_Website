@@ -18,10 +18,6 @@ const cartSchema = new mongoose.Schema({
       },
     },
   ],
-  // totalPrice: {
-  //   type: Number,
-  //   required: true,
-  // },
 });
 
 //Creating Model

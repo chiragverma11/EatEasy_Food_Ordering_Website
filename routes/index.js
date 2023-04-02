@@ -6,7 +6,7 @@ const { checkUser } = require("../middlewares/AuthMiddleware");
 const { getIndex } = require("../controllers/indexController");
 
 //Checking user on every route
-router.get("*", checkUser);
+router.use("*", checkUser);
 
 //Home Get Route
 router.get("/", getIndex);

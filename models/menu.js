@@ -15,6 +15,10 @@ const itemSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  serve: {
+    type: Number,
+    required: true,
+  },
   unit: {
     type: String,
     required: true,

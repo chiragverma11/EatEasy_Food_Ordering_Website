@@ -35,36 +35,143 @@
   </div>
 </header>
 <main>
-  <section class="cart__section container">
-    <% if(cart){ %>
-    <h2 class="section__title">Cart</h2>
-    <div class="cart__flex">
-        <% var totalPrice=0 %>
+  <!-- If Cart is Empty -->
+  <% if( (!cart) || (!cart.items.length>0) ){ %>
+    <section class="alt__section container">
+      <div class="alt">
+      <h2 class="section__title">Your Cart is Empty</h2>
+      <a href="/menu" class="btn empty__cta">See Menu</a>
+      </div>
+    </section>
+    <!-- If Cart is Not Empty -->
+  <% } else{ %>
+    <section class="cart__section container">
+      <div class="cart__flex">
+        <h2 class="section__title">Cart</h2>
+        <!-- Declaring Variables for sending Order Post Request using Place Order Button -->
+        <% var itemName=[] %>
+        <% var itemServe=[] %>
+        <% var itemQty=[] %>
+        <% var itemPrice=[] %>
+        <% var subTotal=0 %>
+        <% var grandTotal=0 %>
+        <!-- Using forEach it'll iterate every item in cart with variable 'cartList' -->
         <% cart.items.forEach((cartList)=>{ %> 
+          <!-- Here it'll find index of items that are in cart list using their itemId and further can be used to Show Food items Details from items database -->
           <% const index = items.findIndex((item) => { %>
             <% return item.itemId == cartList.itemId; }); %>
+
           <div class="cart__item">
-            <p class="item__name"><%= items[index].name %></p>
-            <p class="item__price"><%= items[index].price%></p>
+            <div class="item__details">
+              <!-- To Send itemId to client side Javascript for Api Request-->
+              <input type="hidden" id="itemId" value="<%= cartList.itemId %>"> 
+
+              <p class="item__name"> <%= items[index].name %> <span class="remove__item">(remove)</span></p>
+              <p class="item__unit"> <%= items[index].serve*cartList.qty %> <%= items[index].unit %> </p>
+            </div>
+            <div class="price__details">
+              <div class="qty__control">
+                <!-- To Send itemId to client side Javascript for Api Request-->
+                <input type="hidden" id="itemId" value="<%= cartList.itemId %>"> 
+                
+                <input type="hidden" id="qty" value="<%= cartList.qty %>"> 
+                <button class="qty__btn dec" >-</button>
+                <span class="item__qty"><%= cartList.qty %></span>
+                <button class="qty__btn inc" >+</button>
+              </div>
+              <p class="item__price">&#8377;<%= items[index].price * cartList.qty%></p>
+            </div>
           </div>
-          <% totalPrice+=items[index].price %>
+          <!-- Updating Variables value for sending Order Post Request using Place Order Button -->
+          <% itemName.push(items[index].name) %>
+          <% itemServe.push(`${items[index].serve} ${items[index].unit}`) %>
+          <% itemQty.push(cartList.qty) %>
+          <% itemPrice.push(items[index].price) %>
+          <% subTotal+=(items[index].price * cartList.qty) %>
+          <!-- End of Updating Value -->
+
         <% }) %>
-        <div class="total">
-          <p class="total__title">Total</p>
-          <p class="cart__total"><%= totalPrice %></p>
       </div>
-    <% } else{ %>
-      <div class="alt">
-        <h2 class="section__title">Your Cart is Empty</h2>
-        <a href="/menu" class="btn empty__cta">See Menu</a>
+    </section>
+    <section class="bill__section container">
+      <div class="bill__flex">
+        <!-- <h3 class="bill__title bill">Bill Summary</h3> -->
+        <div class="subtotal bill">
+          <p class="subtotal__title">Subtotal</p>
+          <p class="item__total">&#8377;<%= subTotal %></p>
+          <!-- Updating grandTotal = subTotal -->
+          <% grandTotal=subTotal %>
+
+        </div>
+        <div class="tax bill">
+          <!-- Declaring tax variable -->
+          <% const tax=+(grandTotal*(0.04)).toFixed(2) %>
+          <% grandTotal+= tax %>
+
+          <p class="tax__title">Tax</p>
+          <p class="item__total">&#8377;<%= tax %></p>
+        </div>
+        <div class="delivery bill">
+          <!-- Declaring Delivery Charge variable -->
+          <% const deliveryCharge=30 %>
+          <% grandTotal+= deliveryCharge %>
+
+          <p class="delivery__title">Delivery Charge</p>
+          <p class="delivery__charge">&#8377;<%= deliveryCharge %></p>
+        </div>
+        <div class="grandtotal bill">
+          <p class="grandtotal__title">Grandtotal</p>
+          <p class="grand__total">&#8377;<%= grandTotal %></p>
+        </div>
       </div>
+    </section>  
+    <section class="address__section container">
+      <div class="address__flex">
+        <h3 class="address__title addr">Delivery Address</h3>
+        <div class="address addr" id="addressContainer">
+          <% if((user.address!=null) && (user.address.trim().length!=0)) {%>
+            <p class="user__address"> <i class="fa-solid fa-location-dot"></i> <%= user.address %> <span class="edit__btn" id="editBtn"><i class="fa-solid fa-pen-to-square"></i> </span> </p>
+          <% } else{%>
+            <input type="text" id="newAddress" name="address" class="address__input" placeholder="Enter your address" spellcheck="false">
+            <button class="update__btn" id="updateBtn">Update</button>
+            <% } %>
+
+          </div>
+          <% if((user.address!=null) && (user.address.trim().length!=0)) {%>
+            <div id="proceedContainer" class="proceed">
+              <!-- Some Hidded Input Fields to send Api request to Order Post  -->
+              <input type="hidden" id="itemName" name="itemName" value=" <%= itemName %> ">
+              <input type="hidden" id="itemServe" name="itemServe" value=" <%= itemServe %> ">
+              <input type="hidden" id="itemQty" name="itemQty" value=" <%= itemQty %> ">
+              <input type="hidden" id="itemPrice" name="itemPrice" value=" <%= itemPrice %> ">
+              <input type="hidden" id="subTotal" name="subtotal" value=" <%= subTotal%> ">
+              <input type="hidden" id="tax" name="tax" value=" <%= tax %> ">
+              <input type="hidden" id="deliveryCharge" name="deliveryCharge" value=" <%= deliveryCharge %> ">
+              <input type="hidden" id="grandTotal" name="grandTotal" value=" <%= grandTotal %> ">
+              <!-- End -->
+
+              <input type="submit" id="placeOrderBtn" class="proceed__btn active" value="Place Order&#9205;">
+            </div>
+          <% } else{%>
+            <div id="proceedContainer" class="proceed">
+              <input type="button" class="proceed__btn" title="Please update your address before placing order." value="Place Order&#9205;">
+            </div>
+            <% } %>
+      </div>
+    </section>
       
+    
+
     <% } %>
 
+    <div class="popup" id="popup">
+      <h1 class="popup__message">Order Placed</h1>
     </div>
-  </section>
+
+    <div class="overlay" id="overlay"></div>
+  
 </main>
 
 
 <!-- Scrips -->
-<script src="/js/index.js"></script>
+<script src="/js/cart.js"></script>

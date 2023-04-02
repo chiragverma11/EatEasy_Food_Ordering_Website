@@ -1,3 +1,11 @@
+/*
+  ///////////////////////////////////////////////
+
+  Profile Dropdown
+ 
+  ///////////////////////////////////////////////
+*/
+
 const profile__menu = document.querySelector(".profile__menu");
 
 document.getElementById("profile").onclick = function () {

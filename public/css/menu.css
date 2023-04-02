@@ -32,7 +32,7 @@
   --fw-bold: 700;
 
   --fs-100: 0.875rem;
-  --fs-175: 0.950rem;
+  --fs-175: 0.9rem;
   --fs-200: 1rem;
   --fs-300: 1.125rem;
   --fs-325: 1.25rem;
@@ -362,6 +362,7 @@ html::-webkit-scrollbar-thumb {
 
 .item__unit{
   font-size: var(--fs-175);
+  font-weight: var(--fw-medium);
   color: rgba(0, 0, 0, 0.7);
 }
 

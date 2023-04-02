@@ -34,7 +34,6 @@ module.exports.checkUser = (req, res, next) => {
         return next();
       }
       res.locals.user = user;
-      res.user = user; //To pass user to next middleware
       next();
     });
   });

@@ -23,9 +23,9 @@
     <a href="/cart" class="cart"
       ><i class="fa-solid fa-cart-shopping icon icon-hover"></i>
       <% if(cart) {%>
-        <span class="cart__count"> <%= cart.items.length %> </span>
+        <span class="cart__count" id="cartCount"> <%= cart.items.length %> </span>
       <% }else{ %>
-        <span class="cart__count">0</span>
+        <span class="cart__count" id="cartCount">0</span>
         <% } %>
     </a>
   </div>
@@ -47,18 +47,17 @@
           <div class="info__wrapper">
             <h4 class="item__name"><%= item.name %></h4>
             <p class="item__price">&#8377;<%= item.price %></p>
-            <p class="item__unit">Per <%= item.unit %></p>
+            <p class="item__unit">Per <% if(item.unit=="Plate" || item.unit=="Piece") {%> 
+                <%= item.unit %>
+              <% } else{%>
+                <%= item.serve %> <%= item.unit %>
+                <% } %>
+            </p>
           </div>
-          <form
-            action="/cart"
-            method="post"
-            id="addCartForm"
-            class="add__wrapper"
-          >
-            <input type="hidden" name="userId" value="<%= user._id %>" />
-            <input type="hidden" name="itemId" value="<%= item.itemId %>" />
-            <button type="submit" id="add" class="item__add">+</button>
-          </form>
+          <div class="add__wrapper">
+            <input type="hidden" id="itemId" value="<%= item.itemId %>"> 
+            <button class="item__add">+</button>
+        </div>
         </div>
       </div>
       <% }) %>

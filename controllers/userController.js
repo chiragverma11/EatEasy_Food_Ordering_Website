@@ -8,19 +8,32 @@ const createToken = (id, email) => {
   return jwt.sign({ id, email }, process.env.TOKEN_SECRET, { expiresIn: "1d" });
 };
 
-//Controller Functions
+/*
+  ///////////////////////////////////////////////
 
-//Login Get Route
+  Controller Functions
+ 
+  ///////////////////////////////////////////////
+*/
+
+/*
+  -----------------------------------------------
+  Login Get Route
+  -----------------------------------------------
+*/
 module.exports.getLogin = (req, res) => {
   let myCss = [];
   myCss.push({
     uri: "/css/login.css",
   });
-
   res.render("login", { title: "Login", styles: myCss });
 };
 
-//Login Post Route
+/*
+  -----------------------------------------------
+  Login Post Route
+  -----------------------------------------------
+*/
 module.exports.postLogin = (req, res) => {
   //CSS Path
   let myCss = [];
@@ -75,7 +88,11 @@ module.exports.postLogin = (req, res) => {
   });
 };
 
-//Register Get Route
+/*
+  -----------------------------------------------
+  Register Get Route
+  -----------------------------------------------
+*/
 module.exports.getRegister = (req, res) => {
   let myCss = [];
   myCss.push({
@@ -85,7 +102,11 @@ module.exports.getRegister = (req, res) => {
   res.render("register", { title: "Register", styles: myCss });
 };
 
-//Register Post Route
+/*
+  -----------------------------------------------
+  Register Post Route
+  -----------------------------------------------
+*/
 module.exports.postRegister = (req, res) => {
   //CSS Path
   let myCss = [];
@@ -150,7 +171,30 @@ module.exports.postRegister = (req, res) => {
   });
 };
 
+/*
+  -----------------------------------------------
+  Logouts Get Route
+  -----------------------------------------------
+*/
 module.exports.getLogout = (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.redirect("/");
+};
+
+/*
+  -----------------------------------------------
+  Update Patch Route
+  -----------------------------------------------
+*/
+
+module.exports.patchUpdate = async (req, res) => {
+  const user = res.locals.user;
+  const field = req.params.field;
+  const { newValue } = req.body;
+
+  const us = await User.findOneAndUpdate(
+    { _id: user._id },
+    { $set: { [field]: newValue } } //Here to use variable as a field name we have enclosed variable in [ ]
+  );
+  res.send(`${field} updated`);
 };

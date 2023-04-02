@@ -1,5 +1,18 @@
 const Cart = require("../models/cart");
 
+/*
+  ///////////////////////////////////////////////
+
+  Controller Functions
+ 
+  ///////////////////////////////////////////////
+*/
+
+/*
+  -----------------------------------------------
+  Index Get Route
+  -----------------------------------------------
+*/
 module.exports.getIndex = async (req, res) => {
   let myCss = [];
   myCss.push({
