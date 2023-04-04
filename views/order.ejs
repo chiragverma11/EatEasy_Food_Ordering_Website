@@ -1,0 +1,118 @@
+<header class="primary-header container">
+  <a href="/"><img src="/img/EatEasy.svg" class="logo" alt="EatEasy Logo" /></a>
+  <nav class="primary-navigation">
+    <ul role="list" class="nav-list">
+      <li><a href="/">Home</a></li>
+      <li><a href="#">Popular</a></li>
+      <li><a href="/menu">Menu</a></li>
+    </ul>
+  </nav>
+  <div class="icons">
+    <a href="#" class="icon-hover"><i class="fa-solid fa-magnifying-glass icon"></i></a>
+    <div class="profile">
+      <div id="profileBtn" class="icon-hover"
+        ><i class="fa-solid fa-user icon"></i
+      ></div>
+      <div class="profile__menu">
+        <ul role="list" class="menu__list">
+          <li><a href="#"><%= user.name %></a></li>
+          <li><a href="/orders">Orders</a></li>
+          <li><a href="/user/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <a href="/cart" class="cart icon-hover"
+      ><i class="fa-solid fa-cart-shopping icon"></i>
+      <% if(cart) {%>
+        <span class="cart__count" id="cartCount"> <%= cart.items.length %> </span>
+      <% }else{ %>
+        <span class="cart__count" id="cartCount">0</span>
+        <% } %>
+    </a>
+  </div>
+</header>
+<main>
+  <!-- If Order Not Found-->
+  <% if( (!order)){ %>
+    <section class="alt__section container">
+      <div class="alt">
+      <h2 class="section__title">Order Not Found</h2>
+      <a href="/orders" class="btn empty__cta">Orders</a>
+      </div>
+    </section>
+
+  <!-- If order Found -->
+  <% } else{ %>
+    <section class="order__section container">
+      <h1 class="section__title">Order Details</h1>
+      
+      <!-- Declaring variables for Time -->
+      <% let d=0 %>
+      <% let m=0 %>
+      <% let y=0 %>
+
+      <div class="order">
+        <div class="backAndDate">
+          <a href="/orders" class="back_btn">Back</a>
+
+          <!-- To Format the Date -->
+          <% const months = ['January','February','March','April','May','June','July','August','September','October','November','December' ] %>
+
+          <% d=order.timeStamp.getDate(); %>
+          <% m=months[order.timeStamp.getMonth()]; %>
+          <% y=order.timeStamp.getFullYear(); %>
+
+          <% const dateTime = `${d} ${m} ${y} at ${order.timeStamp.toLocaleTimeString()}` %>
+          <!-- End -->
+
+          <input id="timeStamp" type="hidden" value="order.timeStamp">
+          <p class="dateTime"> <%= dateTime %> </p>
+        </div>
+        <ul class="items__flex" role="list">
+          <% order.items.forEach((item)=>{ %>
+            <li class="order__item">
+              <p class="item__details">
+                <span class="item__qty"><%= item.itemQty %> x </span>
+                <%= item.itemName %> 
+                <span class="item__serve">(<%= item.itemServe %>)</span>
+              </p>
+
+              <p class="item__price">&#8377;<%= item.itemPrice %></p>
+            </li>
+          <% }) %>
+        </ul>
+        <div class="bill__wrapper">
+          <div class="subtotal bill">
+            <p class="subtotal__title">Subtotal</p>
+            <p class="item__total">&#8377;<%= order.bill.subTotal %></p>
+          </div>
+          <div class="bill">
+            <p class="tax__title">Tax</p>
+            <p class="tax">&#8377;<%= order.bill.tax %></p>
+          </div>
+          <div class="delivery bill">
+            <p class="delivery__title">Delivery Charge</p>
+            <p class="delivery__charge">&#8377;<%= order.bill.deliveryCharge %></p>
+          </div>
+          <div class="grandtotal bill">
+            <p class="grandtotal__title">Grandtotal</p>
+            <p class="grand__total">&#8377;<%= order.bill.grandTotal %></p>
+          </div>
+        </div>
+        <div class="address">
+          <h3 class="address__title">Delivery Address</h3>
+          <p class="order__address"> <i class="fa-solid fa-location-dot"></i> <%= order.address %></p>
+        </div>
+        
+      </div>
+
+    </section>
+      
+    <% } %>
+  
+</main>
+
+
+  
+<!-- Scrips -->
+<script src="/js/order.js"></script>

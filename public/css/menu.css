@@ -182,6 +182,11 @@ html::-webkit-scrollbar-thumb {
   font-size: var(--fs-300);
   font-weight: var(--fw-light);
   color: var(--clr-neutral-100);
+  transition: 0.1s ease-in-out;
+}
+
+.nav-list > li:hover > a {
+  font-weight: var(--fw-medium);
 }
 
 .icons {
@@ -207,13 +212,14 @@ html::-webkit-scrollbar-thumb {
   text-decoration: none;
   transition: 0.15s ease-in-out;
   display: inline-block;
+  pointer-events: none;
 }
 
-.icon-hover:hover {
+.icon-hover:hover .icon{
   transform: scale(1.2);
 }
 
-.icon-active > svg {
+.icon-active  {
   transform: scale(1.2);
 }
 
@@ -222,16 +228,12 @@ html::-webkit-scrollbar-thumb {
   Profile Dropdown 
 
 */
-
-.profile__icon {
+.profile {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
-
-/* .profile__icon:active {
-  color: var(--clr-neutral-900);
-} */
-
+    
 .profile__menu {
   margin: 0;
   width: clamp(135px, 14vw, 165px);
@@ -240,13 +242,14 @@ html::-webkit-scrollbar-thumb {
   right: 0;
   background-color: var(--clr-neutral-100);
   color: var(--clr-neutral-900);
-  padding: 0.25rem 0.8rem;
-  border-radius: 0.25rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.35rem;
   font-size: var(--fs-200);
   font-weight: var(--fw-regular);
   visibility: hidden;
   opacity: 0;
-  transition: 0.2s ease-in-out;
+  transition: 0.15s ease-in-out;
+  box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.2);
 }
 
 .profile__menu-active {
@@ -261,21 +264,26 @@ html::-webkit-scrollbar-thumb {
 }
 
 .menu__list > li {
-  padding-block: 0.3rem 0.2rem;
+  transition: 0.1s ease-in-out;
 }
 
 .menu__list > li:first-child {
-  border-bottom: 0.2rem solid rgba(0, 0, 0, 0.1);
+  border-bottom: 0.2rem solid rgba(0, 0, 0, 0.15);
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.1rem;
 }
 
 .menu__list li a {
   color: var(--clr-neutral-500);
   text-decoration: none;
-  transition: 0.2s ease-in-out;
+  transition: 0.1s ease-in-out;
+  display: inline-block;
+  width: 100%;
 }
 
-.menu__list li a:hover {
+.menu__list li:hover a {
   color: var(--clr-neutral-900);
+  transform: scale(1.035);
 }
 
 /* Cart Count */
@@ -383,7 +391,8 @@ html::-webkit-scrollbar-thumb {
   padding: 0.25em 0.35em;
   border: none;
   border-radius: 0.5rem;
-  transition: .1s ease-in-out;
+  transition:  .1s ease-in-out;
+  aspect-ratio: 1/1;
 }
 
 .item__add:hover{
@@ -392,6 +401,11 @@ html::-webkit-scrollbar-thumb {
 
 .item__add:active{
   transform: scale(0.8);
+}
+
+.item__ticked{
+  background-color: var(--clr-neutral-750);
+  font-size: var(--fs-500);
 }
 
 

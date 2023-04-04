@@ -129,8 +129,6 @@ module.exports.deleteCart = async (req, res) => {
 //this will always be use when an order is placed
 module.exports.clearCart = async (req, res) => {
   const user = res.locals.user;
-  const { orderId } = req.body;
-
   await Cart.deleteOne({ userId: user._id });
   res.send("Cart Cleared");
 };

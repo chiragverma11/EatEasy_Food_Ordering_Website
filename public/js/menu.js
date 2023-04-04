@@ -7,11 +7,43 @@
 */
 
 const profile__menu = document.querySelector(".profile__menu");
+const profileBtn = document.getElementById("profileBtn");
 
-document.getElementById("profile").onclick = function () {
-  this.classList.toggle("icon-active");
+/*
+  -----------------------------------------------
+  Event Handlers
+  -----------------------------------------------
+*/
+
+//Toggle the DropDown Menu and Scale the ProfieBtn
+function toggleProfileDropdown(event) {
+  event.target.classList.toggle("icon-hover"); // Toggle the icon hover for profileBtn
+  event.target.classList.toggle("icon-active"); //Scale the profileBtn
   profile__menu.classList.toggle("profile__menu-active");
-};
+}
+
+//Closes Profile Dropdown Menu
+function closeProfileDropdown(event) {
+  if (event.target.id != "profileBtn") {
+    if (profile__menu.classList.contains("profile__menu-active")) {
+      profileBtn.classList.remove("icon-active");
+      profileBtn.classList.toggle("icon-hover");
+      profile__menu.classList.remove("profile__menu-active");
+    }
+  }
+}
+
+/*
+  -----------------------------------------------
+  Event Listeners
+  -----------------------------------------------
+*/
+
+//Adding Click Event on ProfileBtn
+profileBtn.addEventListener("click", toggleProfileDropdown);
+
+// Adding Click Event on Document to Close Profile Dropdown
+document.addEventListener("click", closeProfileDropdown);
 
 /*
   ///////////////////////////////////////////////
@@ -43,6 +75,7 @@ async function cartCount() {
   //Selecting Cart Count Span Element
   const countSpan = document.getElementById("cartCount");
   countSpan.innerHTML = count;
+  return;
 }
 
 /*
@@ -61,8 +94,8 @@ async function postCart(id) {
     // The content to update
     body: JSON.stringify({}), //No Body Or Payload
   });
-  cartCount();
-  // location.reload();
+  cartCount(); //Updating Cart Count
+  return;
 }
 
 /*
@@ -71,8 +104,14 @@ async function postCart(id) {
   -----------------------------------------------
 */
 
+//Change + Sign to Tick Sign After Item Added to Cart
+function changetoTick(event) {
+  event.target.innerHTML = "&check;";
+  event.target.classList.add("item__ticked");
+}
+
 //Cart Add Function
-function cartAdd(event) {
+async function cartAdd(event) {
   let itemId = null;
 
   const btn = event.target;
@@ -84,7 +123,8 @@ function cartAdd(event) {
       itemId = element.value;
     }
   });
-  postCart(itemId);
+  await postCart(itemId);
+  changetoTick(event);
 }
 
 /*

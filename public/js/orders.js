@@ -44,3 +44,55 @@ profileBtn.addEventListener("click", toggleProfileDropdown);
 
 // Adding Click Event on Document to Close Profile Dropdown
 document.addEventListener("click", closeProfileDropdown);
+
+/*
+  ///////////////////////////////////////////////
+
+  Order Details on Click via Redirect
+ 
+  ///////////////////////////////////////////////
+*/
+
+const order = document.querySelectorAll(".order");
+
+/*
+  -----------------------------------------------
+  Redirecting to Order Detail
+  -----------------------------------------------
+*/
+
+async function getOrder(orderId) {
+  const url = `orders/${orderId}`;
+  location.assign(url);
+}
+
+/*
+  -----------------------------------------------
+  Event Handlers
+  -----------------------------------------------
+*/
+
+function orderClick(event) {
+  let orderId = null;
+  const children = event.target.children;
+
+  //Converting HTML Collection to Array for Using forEach
+  Array.from(children).forEach((element) => {
+    if (element.id == "orderId") {
+      orderId = element.value;
+      return;
+    }
+  });
+  getOrder(orderId);
+}
+
+/*
+  -----------------------------------------------
+  Event Listeners
+  -----------------------------------------------
+*/
+
+//Adding Click Event on Order Tile
+order.forEach((tile) => {
+  tile.addEventListener("click", orderClick);
+});

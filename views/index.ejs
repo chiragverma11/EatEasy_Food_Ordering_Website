@@ -8,27 +8,28 @@
     </ul>
   </nav>
   <div class="icons">
-    <a href="#"><i class="fa-solid fa-magnifying-glass icon-hover icon"></i></a>
+    <a href="#" class="icon-hover"><i class="fa-solid fa-magnifying-glass icon"></i></a>
     <% if(user){ %>
-    <div class="profile__icon">
-      <span id="profile" class="profile"
-        ><i class="fa-solid fa-user icon icon-hover"></i
-      ></span>
-      <div class="profile__menu">
-        <ul role="list" class="menu__list">
-          <li><a href="#"><%= user.name %></a></li>
-          <li><a href="/user/logout">Logout</a></li>
-        </ul>
+      <div class="profile">
+        <div id="profileBtn" class="icon-hover"
+          ><i class="fa-solid fa-user icon"></i
+        ></div>
+        <div class="profile__menu">
+          <ul role="list" class="menu__list">
+            <li><a href="#"><%= user.name %></a></li>
+            <li><a href="/orders">Orders</a></li>
+            <li><a href="/user/logout">Logout</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <a href="/cart" class="cart"
-      ><i class="fa-solid fa-cart-shopping icon-hover icon"></i>
-      <% if(cart) {%>
-      <span class="cart__count"> <%= cart.items.length %> </span>
-      <% }else{ %>
-      <span class="cart__count">0</span>
-      <% } %></a
-    >
+      <a href="/cart" class="cart icon-hover"
+        ><i class="fa-solid fa-cart-shopping icon"></i>
+        <% if(cart) {%>
+          <span class="cart__count" id="cartCount"> <%= cart.items.length %> </span>
+        <% }else{ %>
+          <span class="cart__count" id="cartCount">0</span>
+          <% } %>
+      </a>
     <% } else{%>
     <a href="/user/login" class="icon icon-hover login">Login</a>
     <% } %>

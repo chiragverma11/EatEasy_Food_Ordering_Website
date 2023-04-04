@@ -1,0 +1,97 @@
+<header class="primary-header container">
+  <a href="/"><img src="/img/EatEasy.svg" class="logo" alt="EatEasy Logo" /></a>
+  <nav class="primary-navigation">
+    <ul role="list" class="nav-list">
+      <li><a href="/">Home</a></li>
+      <li><a href="#">Popular</a></li>
+      <li><a href="/menu">Menu</a></li>
+    </ul>
+  </nav>
+  <div class="icons">
+    <a href="#" class="icon-hover"><i class="fa-solid fa-magnifying-glass icon"></i></a>
+    <div class="profile">
+      <div id="profileBtn" class="icon-hover"
+        ><i class="fa-solid fa-user icon"></i
+      ></div>
+      <div class="profile__menu">
+        <ul role="list" class="menu__list">
+          <li><a href="#"><%= user.name %></a></li>
+          <li><a href="/orders">Orders</a></li>
+          <li><a href="/user/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <a href="/cart" class="cart icon-hover"
+      ><i class="fa-solid fa-cart-shopping icon"></i>
+      <% if(cart) {%>
+        <span class="cart__count" id="cartCount"> <%= cart.items.length %> </span>
+      <% }else{ %>
+        <span class="cart__count" id="cartCount">0</span>
+        <% } %>
+    </a>
+  </div>
+</header>
+<main>
+  <!-- If user have't ordered -->
+  <% if( (!orders) || (!orders.length>0) ){ %>
+    <section class="alt__section container">
+      <div class="alt">
+      <h2 class="section__title">You haven't placed an order</h2>
+      <a href="/menu" class="btn empty__cta">See Menu</a>
+      </div>
+    </section>
+
+  <!-- If user have order -->
+  <% } else{ %>
+    <section class="orders__section container">
+      <h1 class="section__title">Your Orders</h1>
+      
+      <!-- Declaring variables for Time -->
+      <% let d=0 %>
+      <% let m=0 %>
+      <% let y=0 %>
+
+      <% orders.forEach((order)=>{ %>
+        <div class="order">
+          <!-- Hidden Input to send orderId to client side JS for Get Order Details -->
+          <input type="hidden" name="orderId" id="orderId" value="<%= order._id.toString() %>">
+          <ul class="items__flex" role="list">
+            <% order.items.forEach((item)=>{ %>
+              <li class="order__item">
+                <p class="item__details">
+                  <span class="item__qty"><%= item.itemQty %> x </span>
+                  <%= item.itemName %> 
+                  <span class="item__serve">(<%= item.itemServe %>)</span>
+                </p>
+              </li>
+            <% }) %>
+          </ul>
+          <div class="time__total">
+
+            <!-- To Format the Date -->
+            <% const months = ['January','February','March','April','May','June','July','August','September','October','November','December' ] %>
+
+            <% d=order.timeStamp.getDate(); %>
+            <% m=months[order.timeStamp.getMonth()]; %>
+            <% y=order.timeStamp.getFullYear(); %>
+
+            <% const dateTime = `${d} ${m} ${y} at ${order.timeStamp.toLocaleTimeString()}` %>
+            <!-- End -->
+
+            <input id="timeStamp" type="hidden" value="order.timeStamp">
+            <p class="time"> <%= dateTime %> </p>
+            <p class="total">&#8377;<%= order.bill.grandTotal %></p>
+          </div>
+        </div>
+      <% }) %>
+
+    </section>
+      
+    <% } %>
+  
+</main>
+
+
+  
+<!-- Scrips -->
+<script src="/js/orders.js"></script>

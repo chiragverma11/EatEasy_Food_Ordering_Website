@@ -8,30 +8,27 @@
     </ul>
   </nav>
   <div class="icons">
-    <a href="#"><i class="fa-solid fa-magnifying-glass icon-hover icon"></i></a>
-    <% if(user){ %>
-    <div class="profile__icon">
-      <span id="profile" class="profile"
-        ><i class="fa-solid fa-user icon icon-hover"></i
-      ></span>
+    <a href="#" class="icon-hover"><i class="fa-solid fa-magnifying-glass icon"></i></a>
+    <div class="profile">
+      <div id="profileBtn" class="icon-hover"
+        ><i class="fa-solid fa-user icon"></i
+      ></div>
       <div class="profile__menu">
         <ul role="list" class="menu__list">
           <li><a href="#"><%= user.name %></a></li>
+          <li><a href="/orders">Orders</a></li>
           <li><a href="/user/logout">Logout</a></li>
         </ul>
       </div>
     </div>
-    <a href="#" class="cart"
-      ><i class="fa-solid fa-cart-shopping icon-hover icon"></i>
+    <a href="/cart" class="cart icon-hover"
+      ><i class="fa-solid fa-cart-shopping icon"></i>
       <% if(cart) {%>
-      <span class="cart__count"> <%= cart.items.length %> </span>
+        <span class="cart__count" id="cartCount"> <%= cart.items.length %> </span>
       <% }else{ %>
-      <span class="cart__count">0</span>
-      <% } %></a
-    >
-    <% } else{%>
-    <a href="/user/login" class="icon icon-hover login">Login</a>
-    <% } %>
+        <span class="cart__count" id="cartCount">0</span>
+        <% } %>
+    </a>
   </div>
 </header>
 <main>
@@ -41,6 +38,7 @@
       <div class="alt">
       <h2 class="section__title">Your Cart is Empty</h2>
       <a href="/menu" class="btn empty__cta">See Menu</a>
+      <a href="/orders" class="btn empty__cta orders__btn">Orders</a>
       </div>
     </section>
     <!-- If Cart is Not Empty -->
@@ -103,13 +101,13 @@
           <% grandTotal=subTotal %>
 
         </div>
-        <div class="tax bill">
+        <div class=" bill">
           <!-- Declaring tax variable -->
           <% const tax=+(grandTotal*(0.04)).toFixed(2) %>
           <% grandTotal+= tax %>
 
           <p class="tax__title">Tax</p>
-          <p class="item__total">&#8377;<%= tax %></p>
+          <p class="tax__total">&#8377;<%= tax %></p>
         </div>
         <div class="delivery bill">
           <!-- Declaring Delivery Charge variable -->
@@ -121,6 +119,9 @@
         </div>
         <div class="grandtotal bill">
           <p class="grandtotal__title">Grandtotal</p>
+
+          <!-- Fixing GrandTotal to only two decimal point -->
+          <% grandTotal=grandTotal.toFixed(2) %>
           <p class="grand__total">&#8377;<%= grandTotal %></p>
         </div>
       </div>

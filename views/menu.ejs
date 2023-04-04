@@ -8,20 +8,21 @@
     </ul>
   </nav>
   <div class="icons">
-    <a href="#"><i class="fa-solid fa-magnifying-glass icon icon-hover"></i></a>
-    <div class="profile__icon">
-      <span id="profile" class="profile"
-        ><i class="fa-solid fa-user icon icon-hover"></i
-      ></span>
+    <a href="#" class="icon-hover"><i class="fa-solid fa-magnifying-glass icon"></i></a>
+    <div class="profile">
+      <div id="profileBtn" class="icon-hover"
+        ><i class="fa-solid fa-user icon"></i
+      ></div>
       <div class="profile__menu">
         <ul role="list" class="menu__list">
           <li><a href="#"><%= user.name %></a></li>
+          <li><a href="/orders">Orders</a></li>
           <li><a href="/user/logout">Logout</a></li>
         </ul>
       </div>
     </div>
-    <a href="/cart" class="cart"
-      ><i class="fa-solid fa-cart-shopping icon icon-hover"></i>
+    <a href="/cart" class="cart icon-hover"
+      ><i class="fa-solid fa-cart-shopping icon"></i>
       <% if(cart) {%>
         <span class="cart__count" id="cartCount"> <%= cart.items.length %> </span>
       <% }else{ %>
