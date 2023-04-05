@@ -1,0 +1,11 @@
+﻿itemId,name,price,serve,unit,image,category
+1,Burger,60,1,Piece,/img/menu/1.webp,Fast Food
+2,Pizza,129,1,Piece,/img/menu/2.webp,Fast Food
+3,Kulfi,40,1,Piece,/img/menu/3.webp,Sweets
+4,Pav Bhaji,80,1,Plate,/img/menu/4.webp,Snacks
+5,Dosa,120,1,Plate,/img/menu/5.webp,South Indian
+6,Samosa,20,1,Plate,/img/menu/6.webp,Snacks
+7,Momos,60,1,Plate,/img/menu/7.webp,Fast Food
+8,Gulab Jamun,20,1,Piece,/img/menu/8.webp,Sweets
+9,Jalebi,50,250,Grams,/img/menu/9.webp,Sweets
+10,Dhokla,60,1,Plate,/img/menu/10.webp,Snacks
