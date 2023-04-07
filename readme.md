@@ -8,31 +8,61 @@ These are the instructions to clone and run this project in your local machine f
 
 ### Prerequisites
 
-1. First of all, Clone this repository
+* Node
+* Git
+* MongoDB
+
+### Installation
+
+1. First of all, Clone this repository & navigate to the directory
 ```
 git clone https://github.com/chiragverma11/EatEasy_Food_Ordering_Website.git
+cd EatEasy_Food_Ordering_Website
 ```
 
-2. To run this project you must first install all the dependencies,navigate to the directory & run 
+2. Install the Dependencies 
 ```
 npm install
 ```
 
-3. Create .env file in main directory, example of .env
+### Running Locally
+
+* First Create `.env` file in root directory using the following content and make changes if required.
+
 ```
 PORT=8080
 mongoURI="YourMongoDBuri"
 TOKEN_SECRET="JwtSecret"
 ```
-Just copy and edit the details you want
 
-### Installing
 
-Start the Server
+* Starting the Server
 ```
-npm run start 
+npm start 
 ```
 or
+
 ```
 npm run dev 
 ```
+
+### Adding Food Items to Database Collection (Menu)
+
+To add food items to database run
+
+```
+npm run menu
+```
+Edit `items.csv` file under `assets/csv` to change food items.
+
+## Author
+
+[@chiragverma11](https://github.com/chiragverma11) - Designing & Developement
+
+## Built Using
+
+* [NodeJS](https://nodejs.org/en) - Server
+* [Express](https://expressjs.com/) - Server Framework
+* [MongoDB](https://www.mongodb.com/) - Database
+* [Mongoose](https://mongoosejs.com/) - Object Modeling & Schema
+* [EJS](https://ejs.co/) - Template Engine

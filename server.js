@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const ejs = require("ejs");
 const expressLayouts = require("express-ejs-layouts");
 const cookieParser = require("cookie-parser");
-// const flash = require('connect-flash')
+
 require("dotenv").config();
 
 const app = express();

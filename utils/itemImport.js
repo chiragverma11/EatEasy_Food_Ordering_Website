@@ -10,13 +10,13 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("MongoDB Connected"))
+  .then(() => console.log("MongoDB Connected \n"))
   .catch((err) => console.log(err));
 
 async function csvToMongo() {
   const csvItems = await csv().fromFile("./assets/csv/items.csv");
   await Item.insertMany(csvItems);
-  console.log("Items Added to Menu");
+  console.log("Items Added to Menu\n");
   process.exit();
 }
 

@@ -158,7 +158,7 @@ html::-webkit-scrollbar-thumb {
   transition: all 0.2s ease-in-out;
 }
 
-.logo:hover{
+.logo:hover {
   transform: scale(1.04);
 }
 
@@ -192,7 +192,7 @@ html::-webkit-scrollbar-thumb {
   font-weight: var(--fw-light);
 }
 
-.profile{
+.profile {
   cursor: pointer;
 }
 
@@ -212,11 +212,21 @@ html::-webkit-scrollbar-thumb {
   pointer-events: none;
 }
 
-.icon-hover:hover .icon{
+.login__btn {
+  text-decoration: none;
+  transition: 0.15s ease-in-out;
+  display: inline-block;
+}
+
+.login__btn:hover {
   transform: scale(1.2);
 }
 
-.icon-active  {
+.icon-hover:hover .icon {
+  transform: scale(1.2);
+}
+
+.icon-active {
   transform: scale(1.2);
 }
 
@@ -230,7 +240,7 @@ html::-webkit-scrollbar-thumb {
   display: inline-block;
   cursor: pointer;
 }
-    
+
 .profile__menu {
   margin: 0;
   width: clamp(135px, 14vw, 165px);
@@ -285,11 +295,11 @@ html::-webkit-scrollbar-thumb {
 
 /* Cart Count */
 
-.cart{
+.cart {
   position: relative;
 }
 
-.cart__count{
+.cart__count {
   position: absolute;
   right: -14px;
   bottom: 0;
@@ -678,12 +688,19 @@ textarea::placeholder {
   color: var(--clr-accent-700);
 }
 
+.fa-github,
 .fa-envelope,
 .fa-phone,
 .fa-globe {
   font-size: var(--fs-500);
   padding: 0 0.5em;
 }
+
+/* 
+
+  Footer Section
+
+*/
 
 .primary__footer {
   background-color: var(--clr-accent-700);
@@ -692,6 +709,18 @@ textarea::placeholder {
   font-size: var(--fs-300);
   padding: 1em;
   margin-top: 2.5rem;
+}
+
+.footer__cta {
+  font-weight: var(--fw-medium);
+  text-decoration: underline;
+  color: var(--clr-neutral-100);
+  display: inline-block;
+  transition: 0.15s ease-in-out;
+}
+
+.footer__cta:hover {
+  transform: scale(1.075);
 }
 
 /* 
