@@ -32,39 +32,18 @@
   </div>
 </header>
 <main>
-  <section class="menu container">
-    <h2 class="section__title">Menu</h2>
-    <div class="menu__grid">
-      <% items.forEach((item)=>{ %>
-      <div class="menu__item menu__item-shadow">
-        <div class="item__header">
-          <img
-            src="<%= item.image %>"
-            class="item__image"
-            alt=" <%= item.name %> "
-          />
-        </div>
-        <div class="item__body">
-          <div class="info__wrapper">
-            <h4 class="item__name"><%= item.name %></h4>
-            <p class="item__price">&#8377;<%= item.price %></p>
-            <p class="item__unit">Per <% if(item.unit=="Plate" || item.unit=="Piece") {%> 
-                <%= item.unit %>
-              <% } else{%>
-                <%= item.serve %> <%= item.unit %>
-                <% } %>
-            </p>
-          </div>
-          <div class="add__wrapper">
-            <input type="hidden" id="itemId" value="<%= item.itemId %>"> 
-            <button class="item__add">+</button>
-        </div>
-        </div>
-      </div>
-      <% }) %>
+  <section class="search container">
+    <div class="search__wrapper">
+      <input type="text" class="search__input" id="searchInput" name="food" placeholder="Search" spellcheck="false"><i class="fa-solid fa-magnifying-glass search__icon"></i>
+    </div>
+  </section>
+  <section class="result container" id="resultSection">
+    <div class="menu__grid" id="resultGrid">
+
     </div>
   </section>
 </main>
 
+
 <!-- Scrips -->
-<script src="/js/menu.js"></script>
+<script src="/js/search.js"></script>

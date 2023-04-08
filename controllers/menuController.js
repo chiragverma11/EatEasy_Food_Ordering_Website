@@ -36,16 +36,47 @@ module.exports.getMenu = async (req, res) => {
   });
 };
 
-// //Menu Post Route
-// module.exports.postMenu = (req, res) => {
-//   const { name, price, image, category } = req.body;
-//   const item = new Item({
-//     name,
-//     price,
-//     image,
-//     category,
-//   });
-//   item.save().then(() => {
-//     res.send("Item Saved to Database");
-//   });
-// };
+/*
+  -----------------------------------------------
+  Search Get Route
+  -----------------------------------------------
+*/
+module.exports.getSearch = async (req, res) => {
+  // Storing values from queries to variables
+  const name = req.query.name;
+
+  //Checking if name has value
+  //Guard Clause
+  if (!name) {
+    let myCss = [];
+    myCss.push({
+      uri: "/css/search.css",
+    });
+
+    //To find cart count
+    const user = res.locals.user;
+    const cart = await Cart.findOne({ userId: user._id });
+
+    //Fetching Menu Items from Database
+    // const items = await Item.find({});
+
+    return res.render("search", {
+      title: "Search - EatEasy",
+      styles: myCss,
+      cart: cart,
+    });
+  }
+
+  //Executes If above condition is not True
+  const query = {};
+
+  //Defining value to query object
+  if (name) {
+    query.name = { $regex: name, $options: "i" };
+  }
+
+  //Fetching Menu Items from Database
+  const items = await Item.find(query);
+
+  res.json({ items });
+};
