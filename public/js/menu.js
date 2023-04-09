@@ -123,8 +123,8 @@ async function cartAdd(event) {
       itemId = element.value;
     }
   });
-  await postCart(itemId);
   changetoTick(event);
+  await postCart(itemId);
 }
 
 /*

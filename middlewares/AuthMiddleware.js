@@ -12,6 +12,10 @@ module.exports.isAuthenticated = (req, res, next) => {
       console.log(err.message);
       return res.redirect("/user/login");
     }
+    const user = res.locals.user;
+    if (!user) {
+      return res.redirect("/user/logout");
+    }
     next();
   });
 };

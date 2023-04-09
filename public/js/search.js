@@ -187,7 +187,13 @@ function resultUpdate(result) {
   //If Search Found
   Array.from(result.items).forEach((item) => {
     const isUnitString = () => {
-      if (item.unit == "Plate" || item.unit == "Piece") {
+      if (
+        item.unit == "Plate" ||
+        item.unit == "Piece" ||
+        item.unit == "Glass" ||
+        item.unit == "Cup" ||
+        item.unit == "Pound"
+      ) {
         return item.unit;
       } else {
         return item.serve + " " + item.unit;
@@ -203,15 +209,17 @@ function resultUpdate(result) {
       />
     </div>
     <div class="item__body">
-      <div class="info__wrapper">
-        <h4 class="item__name">${item.name}</h4>
-        <p class="item__price">&#8377;${item.price}</p>
-        <p class="item__unit">Per ${isUnitString()} </p>
+      <h4 class="item__name">${item.name}</h4>
+      <div class="info__add__wrapper">
+        <div class="info__wrapper">
+          <p class="item__price">&#8377;${item.price}</p>
+          <p class="item__unit">Per ${isUnitString()} </p>
+        </div>
+        <div class="add__wrapper">
+          <input type="hidden" id="itemId" value="${item.itemId}"> 
+          <button class="item__add">+</button>
+        </div>
       </div>
-      <div class="add__wrapper">
-        <input type="hidden" id="itemId" value="${item.itemId}"> 
-        <button class="item__add">+</button>
-    </div>
     </div>
   </div>`;
   });
