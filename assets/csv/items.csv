@@ -1,11 +1,35 @@
 ﻿itemId,name,price,serve,unit,image,category
-1,Burger,60,1,Piece,/img/menu/1.webp,Fast Food
-2,Pizza,129,1,Piece,/img/menu/2.webp,Fast Food
-3,Kulfi,40,1,Piece,/img/menu/3.webp,Sweets
-4,Pav Bhaji,80,1,Plate,/img/menu/4.webp,Snacks
-5,Dosa,120,1,Plate,/img/menu/5.webp,South Indian
-6,Samosa,20,1,Plate,/img/menu/6.webp,Snacks
-7,Momos,60,1,Plate,/img/menu/7.webp,Fast Food
-8,Gulab Jamun,20,1,Piece,/img/menu/8.webp,Sweets
-9,Jalebi,50,250,Grams,/img/menu/9.webp,Sweets
-10,Dhokla,60,1,Plate,/img/menu/10.webp,Snacks
+1,Burger,60,1,Piece,/img/menu/burger.webp,Fast Food
+2,Pizza,129,1,Piece,/img/menu/pizza.webp,Fast Food
+3,Kulfi,40,1,Piece,/img/menu/kulfi.webp,Sweets
+4,Pav Bhaji,80,1,Plate,/img/menu/pav_bhaji.webp,Snacks
+5,Dosa,120,1,Plate,/img/menu/dosa.webp,South Indian
+6,Samosa,20,1,Plate,/img/menu/samosa.webp,Snacks
+7,Momos,60,1,Plate,/img/menu/momos.webp,Fast Food
+8,Gulab Jamun,20,1,Piece,/img/menu/gulab_jamun.webp,Sweets
+9,Jalebi,50,250,Grams,/img/menu/jalebi.webp,Sweets
+10,Dhokla,60,1,Plate,/img/menu/dhokla.webp,Snacks
+11,Chole Bhature,120,1,Plate,/img/menu/chole_bhature.webp,Meal
+12,Dal Makhni,160,1,Plate,/img/menu/dal_makhni.webp,Meal
+13,Butter Naan,30,1,Piece,/img/menu/butter_naan.webp,Meal
+14,Chocolate Shake,90,1,Glass,/img/menu/chocolate_shake.webp,Beverages
+15,Mango Shake,80,1,Glass,/img/menu/mango_shake.webp,Beverages
+16,Strawberry Shake,90,1,Glass,/img/menu/strawberry_shake.webp,Beverages
+17,Hot Coffee,90,1,Cup,/img/menu/hot_coffee.webp,Beverages
+18,Cold Coffee,110,1,Glass,/img/menu/cold_coffee.webp,Beverages
+19,Dahi Bhalle,70,1,Plate,/img/menu/dahi_bhalle.webp,Snacks
+20,Chowmein,90,1,Plate,/img/menu/chowmein.webp,Fast Food
+21,Ice Cream,60,1,Piece,/img/menu/ice_cream.webp,Sweets
+22,Chocolate Cake,480,1,Pound,/img/menu/chocolate_cake.webp,Cake
+23,French Fries,80,1,Plate,/img/menu/french_fries.webp,Fast Food
+24,Golgappe,40,6,Piece,/img/menu/golgappe.webp,Snacks
+25,Pakode,80,250,Grams,/img/menu/pakode.webp,Snacks
+26,Salad,70,1,Plate,/img/menu/salad.webp,Salad
+27,Pasta,110,1,Plate,/img/menu/red_sauce_pasta.webp,Fast Food
+28,Papdi Chat,60,1,Plate,/img/menu/papdi_chat.webp,Snacks
+29,Idli,80,1,Plate,/img/menu/idli.webp,South Indian
+30,Gajar Pak,190,250,Grams,/img/menu/gajar_pak.webp,Sweets
+31,Motichoor Laddu,120,250,Grams,/img/menu/motichoor_laddu.webp,Sweets
+32,Ras Malai,40,1,Piece,/img/menu/ras_malai.webp,Sweets
+33,Peda Barfi,160,250,Grams,/img/menu/peda_barfi.webp,Sweets
+34,Rasgulla,25,1,Piece,/img/menu/rasgulla.webp,Sweets

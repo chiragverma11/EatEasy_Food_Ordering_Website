@@ -353,12 +353,6 @@ html::-webkit-scrollbar-thumb {
   color: rgba(0, 0, 0, 0.6);
 }
 
-/* 
-
-  Result Grid
-
-*/
-
 /* Alt Result */
 
 .result__alt{
@@ -371,6 +365,13 @@ html::-webkit-scrollbar-thumb {
   padding-bottom: 2rem;
 }
 
+/* 
+
+  Result Grid
+
+*/
+
+
 .section__title {
   font-size: var(--fs-600);
   font-weight: var(--fw-medium);
@@ -379,7 +380,7 @@ html::-webkit-scrollbar-thumb {
 
 .menu__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 1.2rem;
   padding: 0 6rem;
   transition:all 2s ease-in-out;
@@ -416,11 +417,17 @@ html::-webkit-scrollbar-thumb {
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
 
 .item__name {
   font-size: var(--fs-325);
   font-weight: var(--fw-medium);
+}
+
+.info__add__wrapper{
+  display: flex;
+  justify-content: space-between;
 }
 
 .item__price {

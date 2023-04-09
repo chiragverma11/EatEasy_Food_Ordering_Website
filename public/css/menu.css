@@ -355,11 +355,17 @@ html::-webkit-scrollbar-thumb {
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
 
 .item__name{
   font-size: var(--fs-325);
   font-weight: var(--fw-medium);
+}
+
+.info__add__wrapper{
+  display: flex;
+  justify-content: space-between;
 }
 
 .item__price{
