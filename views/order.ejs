@@ -57,7 +57,7 @@
 
           <!-- To Format the Date -->
           <% const months = ['January','February','March','April','May','June','July','August','September','October','November','December' ] %>
-
+          <% order.timeStamp=new Date(order.timeStamp).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })%>
           <% d=order.timeStamp.getDate(); %>
           <% m=months[order.timeStamp.getMonth()]; %>
           <% y=order.timeStamp.getFullYear(); %>

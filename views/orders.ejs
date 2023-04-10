@@ -50,8 +50,8 @@
       <% let d=0 %>
       <% let m=0 %>
       <% let y=0 %>
-
-      <% orders.forEach((order)=>{ %>
+      <!-- The line below will reverse the array orders and then use it -->
+      <% orders.slice().reverse().forEach((order)=>{ %>
         <div class="order">
           <!-- Hidden Input to send orderId to client side JS for Get Order Details -->
           <input type="hidden" name="orderId" id="orderId" value="<%= order._id.toString() %>">
@@ -70,7 +70,7 @@
 
             <!-- To Format the Date -->
             <% const months = ['January','February','March','April','May','June','July','August','September','October','November','December' ] %>
-
+            <% order.timeStamp=new Date(order.timeStamp).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })%>
             <% d=order.timeStamp.getDate(); %>
             <% m=months[order.timeStamp.getMonth()]; %>
             <% y=order.timeStamp.getFullYear(); %>
