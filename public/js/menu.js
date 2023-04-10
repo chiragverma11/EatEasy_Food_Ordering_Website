@@ -108,6 +108,7 @@ async function postCart(id) {
 function changetoTick(event) {
   event.target.innerHTML = "&check;";
   event.target.classList.add("item__ticked");
+  return;
 }
 
 //Cart Add Function
@@ -125,6 +126,7 @@ async function cartAdd(event) {
   });
   changetoTick(event);
   await postCart(itemId);
+  return;
 }
 
 /*

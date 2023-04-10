@@ -108,6 +108,7 @@ async function postCart(id) {
 function changetoTick(event) {
   event.target.innerHTML = "&check;";
   event.target.classList.add("item__ticked");
+  return;
 }
 
 //Cart Add Function
@@ -123,8 +124,9 @@ async function cartAdd(event) {
       itemId = element.value;
     }
   });
-  await postCart(itemId);
   changetoTick(event);
+  await postCart(itemId);
+  return;
 }
 
 /*
@@ -137,7 +139,6 @@ function addBtnsEvent() {
   addBtns = document.querySelectorAll(".item__add");
   //Adding Click Event on Cart Add Button
   addBtns.forEach((btn) => {
-    console.log(btn);
     btn.addEventListener("click", cartAdd);
   });
 }
@@ -226,6 +227,7 @@ function resultUpdate(result) {
   resultGrid.innerHTML = str;
   //Selecting addBtns for add to cart
   addBtnsEvent();
+  str = "";
   return;
 }
 /*
@@ -236,7 +238,6 @@ function resultUpdate(result) {
 
 //For getting input value from search input
 function searchItems(event) {
-  str = "";
   resultGrid.innerHTML = "";
   const value = event.target.value;
   if (!(value.length > 1)) {

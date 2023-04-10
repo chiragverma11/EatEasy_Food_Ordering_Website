@@ -405,9 +405,9 @@ html::-webkit-scrollbar-thumb {
   opacity: 0.8;
 }
 
-.item__add:active{
+/* .item__add:active{
   transform: scale(0.8);
-}
+} */
 
 .item__ticked{
   background-color: var(--clr-neutral-750);
