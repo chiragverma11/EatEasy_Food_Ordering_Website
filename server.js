@@ -10,13 +10,15 @@ const app = express();
 app.use(cookieParser());
 
 //Mongoose Connection
-mongoose
-  .connect(process.env.mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
+const database = async () => {
+  await mongoose
+    .connect(process.env.mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => console.log("MongoDB Connected"))
+    .catch((err) => console.log(err));
+};
 
 //Express Static
 app.use(express.static("public"));
@@ -41,7 +43,9 @@ app.use("/cart", require("./routes/cart"));
 app.use("/orders", require("./routes/orders"));
 
 //Listen
-app.listen(
-  process.env.PORT,
-  console.log(`Server is running on http://localhost:${process.env.PORT}`)
-);
+database().then(() => {
+  app.listen(
+    process.env.PORT,
+    console.log(`Server is running on http://localhost:${process.env.PORT}`)
+  );
+});
