@@ -12,7 +12,7 @@ app.use(cookieParser());
 //Mongoose Connection
 const database = async () => {
   await mongoose
-    .connect(process.env.mongoURI, {
+    .connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })

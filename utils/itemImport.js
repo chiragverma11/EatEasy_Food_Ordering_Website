@@ -6,7 +6,7 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 //Mongoose Connection
 mongoose
-  .connect(process.env.mongoURI, {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
